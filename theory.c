@@ -99,12 +99,138 @@ void theory_4(void)
 
 }
 
+void  theory_05_add(short int h, unsigned char c)
+{	// дополнительная функция для отслеживания преобразования параметров.
+	printf("Short integer size %u bytes, value %hd.\n", sizeof(h), h);
+	printf("Unsigned char size %u bytes, value '%c' or %hhu.\n\n", sizeof(c), c, c);
+}
+
 void theory_05(void)
 {
 	printf("Theory part 5. Operators, Expressions and Statements.\n\n");
+    int a, b, c, d;
+	a = 3;
+	d = 0;
+	printf("Using while with single line operator: ");
+	while (a-- > 0)
+		printf("%d ", a);
+	printf("\n\n Using while with block of operators: \n");
+	a = 1; b = 2; c = 4;
+	while (c > 0) {
+		printf("%d :\t %d + %d = %d\n", c, a, b, a + b);
+		a--;
+		b++;
+		c--;
+	}
+#define ADDER 5
+	const int r = 2 + ADDER;
+	printf("\n#define ADDER %d and constant result is %d.\n", ADDER, r);
+
+	c = a;
+	printf("\nAssign operator '=', a = % d, b = % d, c = %d.\n", a, b, c);
+	a = 15;		// lvalue, левосторонние значение А, rvalue, правостороннее значение.
+	//15 = a;
+	const int e = 7;		// e - правосторонний объект, так как не может быть модифицированным.
+	//e++;
+	a = b = c = d;
+	printf("\nAssign using many =: a = %d, b = %d, c = %d, d = %d.\n", a, b, c, d);
+	printf("\nArithmetic operators with integers:\n");
+	a = 5; b = 3;
+	c = a + b + 3 + 77;
+	printf("a + b + 3 + 77 = %d + %d + 3 + 77 = %d.\n", a, b, c);
+	c = a - b - 77;
+	printf("a - b - 77 = %d - %d - 77 = %d.\n", a, b, c);
+	c = a * b * 89;
+	printf("a * b * 89 = %d * %d * 89 = %d.\n", a, b, c);
+	c = a / b;
+	printf("a / b = %d / %d = %d.\n", a, b, c);
+	c = (-a);
+	printf("Unary operator minus, a = %d, c = %d.\n", a, c);
+
+	printf("\nBits:\tM = 2 ^ N:\n");
+	a = 1; b = 2;
+	while (a <= 10) {
+		printf("%d\t%d\n", a, b);
+		b = b * 2;
+		a = a + 1;
+	}
+	double f = 2.5, g = 0.5, h;
+	h = f / g;
+	printf("\nDivide floating point %.2f / %.2f = %.2f.\n", f, g, h);
+	h = f / (double)a;
+	printf("Divide floating point %.2f and integer %d = %.2f.\n", f, a, h);
+	
+
+	a = 3; b = 5; c = -7;
+	d = -a * 3 + b * 2 * (3 + (c + 1));
+	printf("\nOperators priority: -%d * 3 + %d * 2 * (3 + (%d + 1)) = %d.\n", a, b, c, d);
 
 
+	size_t max = UINT_MAX;
+	printf("\nSizeof of maximum size_t type is %u.\n", max);
+	printf("Sizeof size_t with this compiler is %u bytes.\n", sizeof max);
+	printf("Sizeof unsigned integer, using compiler is %u bytes.\n", sizeof(unsigned int));
+
+	printf("\nOperator modulus '%%'.\n");
+	const int sec_per_min = 60;
+	a = 75;
+	b = a / sec_per_min;
+	c = a % sec_per_min;
+	printf("Seconds %d is %d minutes and modulus %d seconds.\n", a, b, c);
+	printf("Negative modulus: %d mod %d = %d.\n", -7, -3, -7 % -3);
+
+	a = 0;
+	printf("\nIncrement and decrement using prefix and postfix variants a = %d.\n", a);
+	c = a; b = ++a;
+	printf("Prefix increment before a = %d, b = %d, after a = %d.\n", c, b, a);
+	c = a; b = a++;
+	printf("Postfix increment before a = %d, b = %d, after a = %d.\n", c, b, a);
+	c = a; b = --a;
+	printf("Prefix decrement before a = %d, b = %d, after a = %d.\n", c, b, a);
+	c = a; b = a--;
+	printf("Postfix decrement before a = %d, b = %d, after a = %d.\n", c, b, a);
+	a = +5; b = -5;
+	printf("\nOperators while and increment, decrement, a = %d, b = %d.\n", a, b);
+	printf("a:\tb:\t--a * 2:\tb++ * 3:\n");
+	while (a != b) {
+		//printf("%d\t%d\t%d\t\t%d\n", a, b, --a * 2, b++ * 3); последовательность вычислений негарантированна
+		printf("%d\t%d", a, b);
+		printf("\t%d\t\t%d\n", --a * 2, b++ * 3);
+	}
+
+	printf("\nPriority operators:\n");
+	a = 7; b = -6;
+	printf("Expression: --a + b++ * 5 = --%d + %d++ * 5 = ", a, b);
+	c = --a + b++ * 5;
+	printf("%d + %d * 5 = %d.\n", a, b - 1, c);
+	a = 0; b = 0;
+	printf("b = a++ + a++ = %d++ + %d++ = ", a, a);
+	b = a++ + a++;
+	printf("%d, a = %d.\n", b, a);
+	;	//пустой оператор.
+	5;	//тоже оператор.
+	a = 5;	// после ; - точка следования, без ветвлений.
+	b = a + 2;	// побочный эфект - присвоение переменной, прямой -  вычисление выражения.
+	while (b < a)
+		printf("full operators, this line never run.\n");
+	printf("\nType conversion:\n");
+	short int i = 0x7FFF;
+	unsigned char j = 0xFF;
+	printf("short int + unsigned char = %hd + %hhu = integer %d, short %hd.\n",
+		i, j, i + j, (short int)(i + j));
+		//j = i + 1; преобразование "int" в "unsigned char", возможна потеря данных
+	j = (unsigned char)(i + 1);
+	printf("short int + 1, %d + 1 = integer %d(%d), short int %hd, unsigned char %hhu.\n",
+		i, i + 1, SHRT_MAX,(short int)(i + 1), j);
+	j = (unsigned char)((short int)a + (unsigned char)b);
+	printf("unsigned char  after: %hhu.\n", j);
+	
+	printf("\nCalling function, parameters, conversion:\n");
+	theory_05_add(USHRT_MAX, 'A');		// приведение вниз первого и нормальный второй аргумент.
+	theory_05_add('B', UCHAR_MAX + 'C');	// приведение вверх первого и вниз второго.
+	theory_05_add(SHRT_MAX, 'C');		//нормальный вызов без приведений.
 }
+
 
 
 
