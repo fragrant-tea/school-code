@@ -3,6 +3,7 @@
 
 void part_03(void)
 {
+	printf("Part_03. Logical type and statements.\n\n");
 	int a, b, c, d, e, f, g, h;
 	a = 1; b = 0; c = 0;
 	printf("\n3.1. A = %d, B = %d, C = %d, boolean data.\n", a, b, c);

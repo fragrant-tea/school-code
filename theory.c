@@ -1,6 +1,8 @@
 ﻿#include <stdio.h>
 #include <limits.h>
 #include <float.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 #define STRING_MAX 0x100 
 
@@ -232,7 +234,256 @@ void theory_05(void)
 }
 
 
+unsigned short bits_max_value(unsigned short bits);
+
+void theory_06(void)
+{	// управляющие операторы С. Циклы.
+	printf("Part 6. C Control Statments: Looping.\n\n");
+	int a, b, c;
+	a = 6; b = 3;
+	printf("Simple loop, using operator 'while':\n");
+	while (a-- > 0) {
+		printf(" a: %d\tb: %d\tsum: %d;\n", a, b, a + b);
+		b = b + a;
+
+	}
+	while (a++ != 5)
+		;
+	printf("\n Logical statments in while.\n");
+	printf("\n Just chars in ASCII table from code 'A' or code 65 or 0x41: ");
+	a = 'A';
+	while (a != 'F')
+		printf("%c", a++);
+	printf("\n\n Compare floating point numbers, error using 'while (f != g)' :\n");
+	double f = 1.0, g = 1.3;
+	while (f != g && f < 1.5) {
+		printf("Floating point numbers(%.3f == %.3f).\n", f, g);
+		f = f + 0.1;
+	}
+	a = (5 > 0);
+	b = (3 < 0);
+	c = a && b;
+	printf("\n Logical statments a = (5 > 0), b = (3 < 0), c = %d and %d = %d.\n", a, b, c);
+	printf("\n Compare with 0(zero) any of parameter A in while(...): ");
+	a = 3; 
+	while (a) {
+		printf("%d ", a--);
+	}
+	bool e = true;
+	printf("\n\n Boolean type from <stdbool.h>, e = true = %d, size %d bytes.\n", e, sizeof(e));
+	srand(7);
+	a = rand() % 10;
+	printf("\n Undefined 'while' using random from start %d: ", a);
+	while (a--)
+		printf("%d ", a);
+	printf("\n\n Defined loop 'for' operator, integer I: \nN:\t2^N:\n");
+	for (int i = 1, n = 2; i <= CHAR_BIT; ++i) {
+		printf("%d\t%d\n", i, n);
+		n *= 2;
+	}
+	printf("\n Extra assign operators '+=', '-=', '*=', '/=', '%%=':\n");
+	printf("A:\tOperator:\tB:\tResult:\n");
+	a = 5; b = 2;
+	c = a; a += b;
+	printf("%d\t+=\t\t%d\t%d\n", c, b, a);
+	c = a; a *= b;
+	printf("%d\t*=\t\t%d\t%d\n", c, b, a);
+	c = a; a %= b;
+	printf("%d\t%%=\t\t%d\t%d\n", c, b, a);
+	printf("\n Operators for and comma, in init, parameters and sum: ");
+	for (int i = 0, j = 0; i < 5; j += i, ++i)
+		printf("%d[%d] ", i, j);
+	printf("\n\n Loop with post check 'do {...} while ()': ");
+	a = 0; b = 1;
+	do {
+		printf("%d:%d:%#x ", a, b, b);
+		a++;
+		b = b << 0x01;
+	} while (b < 0x100);
+	printf("\n\n Loops in loop using for, multiplication table:\n");
+	for (int i = 1; i <= 9; ++i)
+		printf("\t%d", i);
+	for (int i = 1; i <= 9; ++i) {
+		printf("\n%d\t", i);
+		for (int j= 1; j <= 9; ++j)
+			printf("%d\t", i * j);
+	}
+	int data[5] = { 2, 8, 16, 32, 64 };
+	printf("\n\n Simple arrays of data, integers, data[index]: ");
+	for (int i = 0; i < 5; i++) 
+		printf("%d[%d] ", data[i], i);
+	char text[] = "popit";
+	printf("\n\n String as arrays of chars: '%s'.\n", text);
+	printf("Sizes of arrays of integers are %u and chars %u bytes.\n", sizeof(data), sizeof(text));
+	printf("\n Testing loops with function bits_max:\nBits:\tMax:\n");
+	for (unsigned short i = 0; i <= CHAR_BIT; ++i)
+		printf("%d\t%d.\n", i, bits_max_value(i));
+}
+
+unsigned short bits_max_value(unsigned short bits)
+{
+	unsigned short result = (bits > 0);		//Опасный код.
+	for (int i = 0; i < bits && i < sizeof(short) * CHAR_BIT; ++i)
+		result <<= 0x01;
+	return result;
+}
+
+int is_alpha(char c)
+{	// функция проверяет, является ли символ параметор букыой латинского алфавита.
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return 1;
+	else
+		return 0;
+}
+
+void theory_07(void)
+{
+	printf("Theory_07. C control statements: branching and jumps.\n\n");
+	int a, b, c, d;
+	printf("\n Full operator 'if'.\n");
+	a = -6; b = 5; c = 0; d = 0;
+	printf("\n Values in range [-6;5]: ");
+	while (a <= b) {
+		printf("%d ", a);
+		if (a < 0) {
+			c++;
+			a++;
+		}
+		else {
+			a += 2;
+			d++;
+		}
+	}
+	printf("\n Negative %d elements, and %d zero or positive elements.\n", c, d);
+	/* 
+	int text[STRING_MAX];
+	printf("\n Input and output string line using 'putchar' and 'getchar'.\n");
+	printf("Input: ");
+	a = b = 0;
+	while ((c = getchar()) != '\n' && a < STRING_MAX - 1)
+		text[a++] = c;
+	printf("output, size %d: ", a);
+	text[a] = '\0';
+	while (b < a)
+		putchar(text[b++]);
+	*/
+	char e = '1';
+	printf("\n\n Library is_alpha from <ctype.h>, is '%c' alpha: ", e);
+	if (is_alpha(e) == 1)
+		printf("yes.\n");
+	else
+		printf("no.\n");
+	a = 6; b = 7; c = -7;
+	printf("\n If-elsee combination in choice. a = %d, b = %d, c = %d, ", a, b, c);
+	if (a > b && a > c) 
+		printf("a is more than b and c.\n");
+	else if (a > b && a < c)
+		printf("a is more than b and less than c.\n");
+	else if (a < b && a > c)
+		printf("a is less than b and is more c.\n");
+	else
+		printf("a is less than b and c.\n");
+
+	a = 100; c = 0;
+	printf("\n All dividers for %d from [1...100]: ", a);
+	for (b = 2; b * b <= a; b++)
+		if (a % b == 0) {
+			if (b * b != a) {
+				d = a / b;
+				printf("%d %d ", b, d);
+				c += 2;
+			} else {
+				printf("%d ", b);
+				c++;
+			}
+		} 
+	printf("- total %d numbers.\n", c);
+	printf("\n Logical operators and combinations.\n");
+	a = 7; b = 1; c = 4; d = -7;
+	printf("\n Sequence of digits %d, %d, %d, %d.\n", a, b, c, d);
+	printf("if not ((%d equal %d) and (%d not equal %d)) or (%d equal 7) = ", a, b, c, d, a);
+	a = !((a == b) && (c != d)) || (a == 7);
+	if (a != 0)
+		printf("%d, yes, expression is true.\n", a);
+	else
+		printf("%d, no, expression is false.\n", a);
+	a = 5; b = (a > 0) ? 1 : 0;
+	printf("\n\n using operators '?' if (%d > 0) ? 1 : 0 = %d.\n", a, b);
+	printf("\n Operators continue and break in simple loops: \n");
+	printf("a:\tb:\tloop command: \n");
+	for (a = 10, b = 0; a >= b; --a) {
+		printf("%d\t%d\t", a, b);
+		if (a % 2 == 0) {
+			printf("continue and decrease A;\n");
+			continue;
+		}
+		while (++b)
+			if (b % 2 == 0) {
+				printf("break loop to increase b mod 2. ");
+				break;
+		}
+		printf("\n");
+	}
+	printf("\n\n operators switch and break. \n");
+	printf("switch operators and logic, 0 - not, 1 - or, 2 - and, 3,4 - (or not): \n");
+	printf("Index:\tA:\toperators:\tB:\tresult: \n");
+	for (c = 0, a = 1, b = 0; c < 5; ++c)
+		switch (c){ 
+		case 0: 
+			d = !a;
+			printf("%d\t%d\tnot\t\t\t%d;\n", c, a, d);
+			break;
+		case 1:
+			d = a || b;
+			printf("%d\t%d\tor\t\t%d\t%d;\n", c, a, b, d);
+			break;
+		case 2:
+			d = a && b;
+			printf("%d\t%d\tand\t\t%d\t%d;\n", c, a, b, d);
+			break;
+		case 3:
+			d = !b;
+			printf("%d\t\tnot\t\t%d\t%d;\n", c, b, d);
+		case 4:
+			d = a || d;
+			printf("%d\t%d\tor\t\t%d\t%d;\n", c, a, b, d);
+			break;
+		default:
+			printf("C index not found.\n");
+		}
+	printf("\n\n some fun with goto operators\n");
+	a = 1;
+label_a:
+	printf("label_a: a = %d.\n", a);
+label_b:
+	if (++a == 2) {
+		printf("goto label_a.\n");
+		goto label_a;
+	}
+	if (++a == 4) {
+		printf("goto label_b.\n");
+		goto label_b;
+	}
+	printf("a = %d.\n",a);
+
+		
+
+	
+			
 
 
+		
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
