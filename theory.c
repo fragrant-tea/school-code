@@ -3,6 +3,7 @@
 #include <float.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define STRING_MAX 0x100 
 
@@ -55,11 +56,18 @@ void theory_3(void)
 
 
 
-void theory_4(void)
+void theory_04(void)
 {
 	printf("Part 4, Strings and formatted input and output.\n");
 	// использование имён для констант,  для улучшения читабельности и потдержки.
 	char string[STRING_MAX] = "8-Bit Tea Party!!";
+	//int r = 1;
+	//while ((r > 0) && (r = scanf(" %c %c", &string[0], &string[1]))) {
+		//printf("input pars %d, string '%s'.\n", r, string);
+		//r = strlen(string);
+		//printf("length = %d.\n", r);
+	//}
+	//return 1;
 	int r = 5 * 1024;
 	const int kilobyte = 1024;
 	r = 5 * kilobyte;
@@ -355,7 +363,7 @@ void theory_07(void)
 		}
 	}
 	printf("\n Negative %d elements, and %d zero or positive elements.\n", c, d);
-	/* 
+	/*
 	int text[STRING_MAX];
 	printf("\n Input and output string line using 'putchar' and 'getchar'.\n");
 	printf("Input: ");
@@ -375,7 +383,7 @@ void theory_07(void)
 		printf("no.\n");
 	a = 6; b = 7; c = -7;
 	printf("\n If-elsee combination in choice. a = %d, b = %d, c = %d, ", a, b, c);
-	if (a > b && a > c) 
+	if (a > b && a > c)
 		printf("a is more than b and c.\n");
 	else if (a > b && a < c)
 		printf("a is more than b and less than c.\n");
@@ -387,7 +395,7 @@ void theory_07(void)
 	a = 100; c = 0;
 	printf("\n All dividers for %d from [1...100]: ", a);
 	for (b = 2; b * b <= a; b++)
-		if (a % b == 0) {
+		if (a % b == 0){
 			if (b * b != a) {
 				d = a / b;
 				printf("%d %d ", b, d);
@@ -396,7 +404,7 @@ void theory_07(void)
 				printf("%d ", b);
 				c++;
 			}
-		} 
+}
 	printf("- total %d numbers.\n", c);
 	printf("\n Logical operators and combinations.\n");
 	a = 7; b = 1; c = 4; d = -7;

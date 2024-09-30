@@ -116,6 +116,25 @@ void part_03(void)
 	printf("\n3.26V. %d or not %d and not(%d or not %d) = %d", a, b, a, c, d);
 	a = 0; c = 1; b = 0; d = a || !b && !(a || !c);
 	printf("\n3.26V. %d or not %d and not(%d or not %d) = %d", a, b, a, c, d);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	a = 1; b = 0; c = 0; d = a || !b && !(a || !c);
 	printf("\n3.26V. %d or not %d and not(%d or not %d) = %d.\n", a, b, a, c, d);
 
