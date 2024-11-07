@@ -47,6 +47,7 @@ int main(void)
 {
 	//theory_07();
 	part_05();
+	//college(); 
 	return;
 	//heory_07();
 	

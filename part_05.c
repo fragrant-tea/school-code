@@ -10,16 +10,16 @@ void part_05(void)
     int a, b, c, d, e, f, g, h, i, j;
     double x, y, z, w;
     printf("\n5.3. Print data in column:\nA)\n");
-    for (b = 20; b <= 35; b++) 
+    for (b = 20; b <= 35; b++)
         printf("%d\n", b);
     printf("B)\n");
-    for (a = 45; a <= 50; a++) 
+    for (a = 45; a <= 50; a++)
         printf("%d\n", a * a);
     printf("V)\n");
-    for (b = 45; b <= 50; b++) 
+    for (b = 45; b <= 50; b++)
         printf("%d\n", b * b * b);
     printf("G)\n");
-    for (b = 34, c = 37; b <= c; b++) 
+    for (b = 34, c = 37; b <= c; b++)
         printf("%d\n", b);
     const double cm_per_inch = 2.54, gram_per_pound = 453.0,
         gram_per_kg = 1000.0, rub_usd = 93.47;
@@ -42,54 +42,77 @@ void part_05(void)
         horizon = sqrt(horizon);
         printf("horizon at %.2f km = %.6f;\n", height, horizon);
     }
-    return;
-    printf("5.15) multiplication table by the number n");
-    printf("a = ");
     a = 6;
-    for (b = 0; b < 10; b++) {
+    printf("\n5.15. Table multiply using number A = %d.\n", a);
+    for (b = 1; b <= 9; b++)
         printf("%d*%d = %d\n", a, b, a * b);
-    }
-    
-    printf("5.16) print the values of sin 2 , sin3 , ..., sin 20 in a column");
-    for (a = 2; a <= 21; a++) 
-    printf("sin(%d) = %f\n", a, sin(a));
-
-    
-    printf("5.18) calculate the z values for the values of a equal to 2, 3, ..., 17:");
+    printf("\n5.16. F((sin(n)) = sin(2), sin(3), ..., sin(5) in a column:\n");
+    for (a = 2; a <= 5; a++)
+        printf("sin(%d) = %f\n", a, sin(a));
+    printf("\n5.18. Z(a) = 3.5 * T^2 - 7 * T + 16, T = 4 * A, A in [2...7].\n");
     a = 2;
-    while (a) {
-        x = sin(4 * a);
-        y = 3.5 * pow(x, 2) - 7 * cos(x) + 1.6;
-        printf("a = %2d\tx = %6.3f\ty = %6.3f\n", a, x, y);
+    while (a < 5) {
+        x = 4 * a;
+        y = 3.5 * pow(x, 2.0) - 7.0 * x + 16.0;
+        printf("\tt = 4 * %d = %.2f, Z(a) = 3.5 * %.2f^2 - 7 * %.2f + 16 = %.2f\n", a, x, x, x, y);
         a = a + 1;
     }
-    printf("5.20) print the values in a column sqrt 0.1 - sqrt 0.9");
-    float k = 0.1;
-    for (k = 1; k <= 9; k++) {
-        printf("%f\n", k);
-        k += 0.1;
+    printf("\n5.20. Print values of sqrt(0.1...0.5):\n");
+    for (a = 1; a <= 5; a++) {
+        x = a / 10.0;
+        printf("%.2f\t%.2f\n", x, sqrt(x));
     }
-    
-    printf("5.22) table of the cost of 100, 200, 300, ..., 2000 g of sweets");
     double price = 333.3;
-    printf("Введите цену 1 кг конфет: ");
-    price *= 0.1;
-    for (a = 1; a <= 20; a++) {
-        printf("%d g - %.2f RUR\n", a * 100, a * price);
+    printf("\n5.22. Price of candys in kg = %.2f.\n", price);
+    printf ("Grams:\tValue:\n");
+    price /= 1000.0;
+    for (a = 1; a <= 5; a++)
+        printf("%dg\t%.2frub\n", a * 100, (double)a * 100.0 * price);
+    
+    printf("\n5.26. Print numbers in a column: 4.4, 4.6, ..., 6.4:\n");
+    d = 44;
+    while (d < 50) {
+        x = d / 10.0;
+        printf("%.2f\n", x);
+        d = d + 2;
     }
     
-    printf("5.26) Print the following numbers in a column: 4,4, 4,6, 4,8, ..., 6,4.");
-    //d = 4.4;
-    //while (d < 6.5) 
-    //printf("%f\n", d);
-    //d = d + 0.2;
-          
-    printf("Processing a fixed sequence of numbers");
-   // d = 0;
-    //for (b = a; b <= 500; b++) 
-     //   d += b;
-    //printf("5.27. b) %d\n", d);
-       
+    printf("\nProcessing a fixed sequence of numbers.\n\n");
+    for (a = 3, b = 6, c = a, d = 0; c <= b; c++) 
+        d += c;
+    printf("\n5.27. B) Sum from %d to %d = %d.\n", a, b, d);
     
+    b = 5;
+    printf("\n5.28. B) Multiply from %d to %d: ", 1, b);
+    if (b >= 1 && b <= 10) 
+        for (a = 1, c = a, d = 1; c <= b; c++) {
+            d *= c;
+            printf("%d(%d) ", c, d);
+        }
+    // Вещание 3!!!!!!!!!!!!!!!!
+    return;
+    for (a = 1, b = 10, c = a, d = 0; c <= b; c++) {
+        d += c;
+       // print 
+        }
+    x = (double)d / (double)(b - a + 1);
+    printf("\n\n5.29.A)The arithmetic mean from %d to %d: %.2f.\n", a, b, x);
+    return;
+    // б) Среднее арифметическое всех целых чисел от 100 до b
+    // а) Сумма кубов всех целых чисел от 20 до 40
+    e = 0;
+    for (i = 20; i <= 40; i++) {
+        a += i * i * i;
+    }
+    printf("The sum of the cubes of all integers from 20 to 40: %d\n", a);
+            
+    long long suthe_cat_in_the_boots = 0; // Используем long long для предотвращения переполнения
+    a  = 33;
+    // Вычисление суммы квадратов чисел от n до 2n
+    for (i = a; i <= 2 * a; i++) {
+    suthe_cat_in_the_boots += i * i;
+    }
+     printf("The sum of the numbers from n^2 to (2n)^2: %lld\n", suthe_cat_in_the_boots);
 
-}
+
+ }
